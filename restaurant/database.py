@@ -2,6 +2,8 @@ import sqlite3
 from typing import List, Dict, Any
 from .order_module import Order
 from .menu_module import Dish
+import os
+from pathlib import Path
 
 class Database:
     """Класс для работы с базой данных SQLite"""
@@ -87,4 +89,7 @@ class Database:
                     'dishes': row[5]
                 })
             
+
             return orders
+BASE_DIR = Path(__file__).parent
+DATABASE_PATH = os.environ.get('DATABASE_PATH', BASE_DIR / 'restaurant.db')
