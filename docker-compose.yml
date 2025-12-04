@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./restaurant.db:/app/restaurant.db
+      - ./:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge
